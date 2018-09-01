@@ -33,7 +33,7 @@ public class BookController {
         return bookService.getBookById(bookId);
     }
 
-    @Cacheable(key = "#root.target.MY_KEY")
+
     @RequestMapping(method = RequestMethod.POST)
     public BookEntity createBook(@RequestBody BookEntity bookEntity) {
         return bookService.createBook(bookEntity);
