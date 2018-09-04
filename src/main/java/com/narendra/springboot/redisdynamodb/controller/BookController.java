@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @CacheConfig(cacheNames = "books")
 public class BookController {
 
-    public static final String MY_KEY = "mykey";
+    //public static final String ALL_BOOKS = "allBooks";
 
     @Autowired
     private BookService bookService;
 
-    @Cacheable(key = "#root.target.MY_KEY")
+    //@Cacheable(key = "#root.target.ALL_BOOKS")
     @RequestMapping(method = RequestMethod.GET)
     public BooksResponse getAllBooks() {
-        ;
         return new BooksResponse(bookService.getAllBooks());
     }
 
@@ -33,7 +32,7 @@ public class BookController {
         return bookService.getBookById(bookId);
     }
 
-
+    @Cacheable(key = "#bookEntity.isbn")
     @RequestMapping(method = RequestMethod.POST)
     public BookEntity createBook(@RequestBody BookEntity bookEntity) {
         return bookService.createBook(bookEntity);
