@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @CacheConfig(cacheNames = "books")
 public class BookController {
 
-    //public static final String ALL_BOOKS = "allBooks";
-
     @Autowired
     private BookService bookService;
 
-    //@Cacheable(key = "#root.target.ALL_BOOKS")
     @RequestMapping(method = RequestMethod.GET)
     public BooksResponse getAllBooks() {
         return new BooksResponse(bookService.getAllBooks());

@@ -1,5 +1,6 @@
 package com.narendra.springboot.redisdynamodb.service;
 
+import com.narendra.springboot.redisdynamodb.cache.BookEntityCache;
 import com.narendra.springboot.redisdynamodb.dao.BookEntity;
 import com.narendra.springboot.redisdynamodb.dao.BookEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,19 @@ import java.util.Optional;
 public class BookService {
 
     @Autowired
-    private BookEntityRepository bookEntityRepository;
+    BookEntityRepository bookEntityRepository;
+
+    @Autowired
+    BookEntityCache bookEntityCache;
 
     public List<BookEntity> getAllBooks() {
-        System.out.println("Service");
-        return new ArrayList<>(bookEntityRepository.findAll());
+        return new ArrayList<>(bookEntityCache.findAll());
     }
 
     public BookEntity createBook(BookEntity bookEntity) {
        /* System.out.println("started");
 
-        for (int i =3 ; i< 10000; i++){
+        for (int i =3 ; i< 1000; i++){
             BookEntity bookEntity1 = new BookEntity();
             bookEntity1.setBookName(bookEntity.getBookName()+""+i);
             bookEntity1.setAuthorName(bookEntity.getAuthorName()+""+i);
