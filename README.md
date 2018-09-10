@@ -2,9 +2,8 @@
 
 Why ?
 
-Spring cache at its core, applies caching to methods, thus reducing the number of executions based on the information available in the cache. But in cases like getAll this may lead to return incorrect data if some new entry gets added between two consecutive getAll calls. In that case the second call will not contain the newly added entry. Again this whole call gets cached against the single key, which i believe defeat the perpose, as this cached data wont be useful during getById method call.
+Spring cache at its core, applies caching to methods, thus reducing the number of executions based on the information available in the cache. But in cases like getAll this may lead to return incorrect data if some new entry gets added between two consecutive getAll calls. In that case the second call will not contain the newly added entry. Again this whole call gets cached against the single key, which i believe defeat the purpose, as this cached data won't be useful during getById method call.
 
-What ?
 
 A. Annotations Used :
 
